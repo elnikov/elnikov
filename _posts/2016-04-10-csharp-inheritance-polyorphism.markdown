@@ -2,7 +2,7 @@
 layout: post
 title:  "Наследование C#. Полиморфизм"
 date:   2016-04-10 16:34:32 +0300
-categories: CSharp
+categories: csharp
 ---
 Как применять на практики полиморфизм классов C#.
 
