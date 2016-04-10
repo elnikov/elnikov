@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Welcome to Jekyll!"
+title:  "Rebrand"
 date:   2016-03-21 16:34:32 +0300
 categories: jekyll update
 ---
