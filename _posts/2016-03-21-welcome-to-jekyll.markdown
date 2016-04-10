@@ -1,25 +1,73 @@
 ---
 layout: post
-title:  "Rebrand"
-date:   2016-03-21 16:34:32 +0300
-categories: jekyll update
+title:  "Наследование C#. Полиморфизм"
+date:   2016-04-10 16:34:32 +0300
+categories: C# Наследование Полиморфизм Inheritance
 ---
-You’ll find this post in your `_posts` directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run `jekyll serve`, which launches a web server and auto-regenerates your site when a file is updated.
+Как применять на практики полиморфизм классов C#.
 
-To add new posts, simply add a file in the `_posts` directory that follows the convention `YYYY-MM-DD-name-of-post.ext` and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.
+Можно понять на примере:
+Есть массив из полигонов. Каждый элемент массива может быть кругом, квадратом, полигоном и неинициализированным объектом. 
 
-Jekyll also offers powerful support for code snippets:
+Для начала нужно создать базовый класс Polygon.
+{% highlight C# %}
+	class Polygon
+	{
+		public int NumberOfSides { get; set; }
+		public Polygon()
+		{
+			NumberOfSides = 0;
+		}
+		public Polygon(int numberOfSides)
+		{
+			NumberOfSides = numberOfSides;
+		}
+	}
+{% endhighligh %}
 
-{% highlight ruby %}
-def print_hi(name)
-  puts "Hi, #{name}"
-end
-print_hi('Tom')
-#=> prints 'Hi, Tom' to STDOUT.
+Затем два дочерних класса Square и Circle, которые наследуют базовый класс Polygon
+{% highlight C# %}
+class Square : Polygon
+	{
+		public float Size { get; set; }
+		public Square(float size)
+		{
+			Size = size;
+			NumberOfSides = 4;
+		}
+	}
+
+	class Circle : Polygon
+	{
+		public float Radius { get; set; }
+		public Circle(float radius)
+		{
+			Radius = radius;
+		}
+	}
 {% endhighlight %}
 
-Check out the [Jekyll docs][jekyll-docs] for more info on how to get the most out of Jekyll. File all bugs/feature requests at [Jekyll’s GitHub repo][jekyll-gh]. If you have questions, you can ask them on [Jekyll Talk][jekyll-talk].
+Теперь массив из полигонов можно получить следующим образом:
+{% highlight C# %}
+			Polygon[] polygons= new Polygon[100];
+			polygons [1] = new Square (10f);
+			polygons [2] = new Circle (4f);
+			polygons [3] = new Polygon (2);
+{% endhighlight %}
 
-[jekyll-docs]: http://jekyllrb.com/docs/home
-[jekyll-gh]:   https://github.com/jekyll/jekyll
-[jekyll-talk]: https://talk.jekyllrb.com/
+
+
+Так как изначальный тип - Polygon, мы не можем получить доступ к переменным float Radius и float Size, хотя они безусловно сохранились.
+Самый простой способ получить доступ к этим переменным:
+
+{% highlight C# %}
+      Square square = (Square)polygon[1];
+			Console.WriteLine (square.Size);
+			Circle circle = (Circle)polygon[2];
+			Console.WriteLine (circle.Size);
+{% endhighlight %}
+
+Примеры кода можно посмотреть тут: [DotNetFiddle.net][dotnetfiddle]
+
+
+[dotnetfiddle]: https://dotnetfiddle.net/7ca3hK
