@@ -19,3 +19,5 @@ github_username:  2
 
 # Build settings
 markdown: kramdown
+kramdown:
+  syntax_highlighter: rouge
