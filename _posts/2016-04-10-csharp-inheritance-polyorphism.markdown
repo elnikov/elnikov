@@ -45,7 +45,7 @@ class Square : Polygon
 			Radius = radius;
 		}
 	}
-{% endhighlight %}
+{% endhighligh %}
 
 Теперь массив из полигонов можно получить следующим образом:
 {% highlight C# %}
@@ -53,7 +53,7 @@ class Square : Polygon
 			polygons [1] = new Square (10f);
 			polygons [2] = new Circle (4f);
 			polygons [3] = new Polygon (2);
-{% endhighlight %}
+{% endhighligh %}
 
 
 
@@ -65,7 +65,7 @@ class Square : Polygon
 			Console.WriteLine (square.Size);
 			Circle circle = (Circle)polygon[2];
 			Console.WriteLine (circle.Size);
-{% endhighlight %}
+{% endhighligh %}
 
 Примеры кода можно посмотреть тут: [DotNetFiddle.net][dotnetfiddle]
 
